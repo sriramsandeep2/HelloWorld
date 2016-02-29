@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FirstAnt">
+	<property name="tomcat">C:\Program Files\Apache Software Foundation\Tomcat 7.0</property>
+	<property name="tomcat.deployment">"${tomcat}/webapps"</property>
+	<property name="tomcat.bin">"${tomcat}/bin"</property>
+	<property name="base">"."</property>
+	<property name="source">${base}/src</property>
+	
+	<target name="warTarget">
+		<war warfile="sandeep.war" needxmlfile="false">
+			<fileset dir="${source}/webFiles" />
+		</war>
+		<antcall target="deployTarget"/>
+	</target>
+	<target name="deployTarget">
+	<copy file="sandeep.war" todir="C:\Users\sriram\Desktop" />
+	<antcall target="startTomcat"/>
+	</target>
+	<target name="startTomcat">
+		<exec executable="${tomcat.bin}/startup.bat"/>
+	</target>
+	<target name="stopTomcat">
+			<exec executable="${tomcat.bin}/shutdown.bat"/>
+	</target>
+</project>
